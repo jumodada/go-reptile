@@ -1,22 +1,31 @@
 package main
 
 import (
-	"fmt"
-	"strconv"
+	"go-reptile/crawler/config"
+	"go-reptile/crawler/engine"
+	"go-reptile/crawler/persist"
+	"go-reptile/crawler/scheduler"
+	"go-reptile/crawler/zhenai/parser"
 )
 
 func main() {
-	//e := engine.ConcurrentEngine{
-	//	Scheduler:   &scheduler.QueuedScheduler{},
-	//	WorkerCount: 100,
-	//}
-	//
-	//e.Run(engine.Request{
-	//	Url:        "http://www.zhenai.com/zhenghun",
-	//	ParserFunc: parser.ParseCityList,
-	//})
-	i, err := strconv.Atoi("-42")
+	itemChan, err := persist.ItemSaver(
+		config.ElasticIndex)
 	if err != nil {
-		fmt.Println(i)
+		panic(err)
 	}
+
+	e := engine.ConcurrentEngine{
+		Scheduler:        &scheduler.QueuedScheduler{},
+		WorkerCount:      100,
+		ItemChan:         itemChan,
+		RequestProcessor: engine.Worker,
+	}
+
+	e.Run(engine.Request{
+		Url: "http://localhost:8080/mock/www.zhenai.com/zhenghun",
+		Parser: engine.NewFuncParser(
+			parser.ParseCityList,
+			config.ParseCityList),
+	})
 }
