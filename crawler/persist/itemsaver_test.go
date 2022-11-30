@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/olivere/elastic/v7"
 	"go-reptile/crawler/engine"
 	"go-reptile/crawler/model"
 )

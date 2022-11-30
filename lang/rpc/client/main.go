@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net"
 	"net/rpc/jsonrpc"
+
+	"go-reptile/lang/rpc"
 )
 
 func main() {

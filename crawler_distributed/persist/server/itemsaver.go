@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/olivere/elastic/v7"
 	"go-reptile/crawler/config"
 	"go-reptile/crawler_distributed/persist"
 	"go-reptile/crawler_distributed/rpcsupport"

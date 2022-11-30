@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/olivere/elastic/v7"
 	"go-reptile/crawler/config"
 	"go-reptile/crawler/engine"
 	"go-reptile/crawler/frontend/model"

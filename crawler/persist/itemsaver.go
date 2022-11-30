@@ -5,6 +5,7 @@ import (
 	"errors"
 	"log"
 
+	"github.com/olivere/elastic/v7"
 	"go-reptile/crawler/engine"
 )
 

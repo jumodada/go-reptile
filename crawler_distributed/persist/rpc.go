@@ -3,6 +3,7 @@ package persist
 import (
 	"log"
 
+	"github.com/olivere/elastic/v7"
 	"go-reptile/crawler/engine"
 	"go-reptile/crawler/persist"
 )
